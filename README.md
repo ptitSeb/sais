@@ -8,4 +8,4 @@ You'l need cmake (v2.8 minimum), SDL and SDL_mixer.
 
 It has been tested on OpenPandora. The Mods have not been tested yet.
 
-To get data, go to official site of sais http://digital-eel.com/sais/ and download the full realise, it's free (grab the osx version and extract the dmg data using 7z on linux).
+To get data, go to official site of sais http://digital-eel.com/sais/ and download the full release, it's free (grab the osx version and extract the dmg data using 7z on linux).
