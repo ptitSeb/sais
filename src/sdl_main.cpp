@@ -48,5 +48,9 @@ int main(int argc, char *argv[])
 		sdlsurf = SDL_SetVideoMode(640, 480, 8, SDL_HWPALETTE);
 	my_main();
 
+	
+	Mix_CloseAudio();
+	SDL_Quit();
+
 	return 0;
 }
