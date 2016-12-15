@@ -244,12 +244,18 @@ int modconfig_main()
 		{
 			prep_screen();
 			ik_copybox(backy, screen, 0, 0, 639, 479, 0, 0);
-
+#ifdef PANDORA
+#define WIDE 280
+#define DECAL (WIDE-256)/2
+#else
+#define WIDE 256
+#define DECAL 0
+#endif
 			switch (mode)
 			{
 				case 0:	// main menu
 				bx = 192; by = 164; h = 128;
-				interface_drawborder(screen, bx, by, bx+256, by+h, 1, 
+				interface_drawborder(screen, bx-DECAL, by, bx+WIDE, by+h, 1, 
 						MOD_INTERFACE_COLOR, "Strange Adventures in Infinite Space");
 
 				interface_drawbutton(screen, bx+48, by+40, 160, MOD_INTERFACE_COLOR, "STANDARD GAME");
@@ -259,7 +265,7 @@ int modconfig_main()
 
 				case 1:
 				bx = 192; by = 148; h = 160;
-				interface_drawborder(screen, bx, by, bx+256, by+h, 1, 
+				interface_drawborder(screen, bx-DECAL, by, bx+WIDE, by+h, 1, 
 						MOD_INTERFACE_COLOR, "Strange Adventures in Infinite Space");
 
 				y = 0;
@@ -287,7 +293,7 @@ int modconfig_main()
 				interface_thinborder(screen, bx+16, by+32, bx+240, by+120, MOD_INTERFACE_COLOR);
 
 				interface_drawbutton(screen, bx+16, by+h-32, 64, MOD_INTERFACE_COLOR, "CANCEL");
-				interface_drawbutton(screen, bx+256-80, by+h-32, 64, MOD_INTERFACE_COLOR, "RUN MOD");
+				interface_drawbutton(screen, bx+WIDE-80, by+h-32, 64, MOD_INTERFACE_COLOR, "RUN MOD");
 				break;
 
 				default: ;
@@ -297,7 +303,7 @@ int modconfig_main()
 			ik_blit();	
 		}
 	}
-
+#undef WIDE
 	prep_screen();
 	ik_drawbox(screen, 0, 0, 639, 479, 0);
 	ik_blit();

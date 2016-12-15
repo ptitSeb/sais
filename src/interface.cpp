@@ -328,7 +328,11 @@ int32 interface_popup(t_ik_font *fnt,
 
 	if (bl)
 	{
+#ifdef PANDORA
+		bl = bl * 7 + 16;
+#else
 		bl = bl * 6 + 16;
+#endif
 		bl = bl & 0xf8;
 		if (bl<32) bl=32;
 	}
@@ -446,10 +450,13 @@ void interface_initsprites()
 {
 	t_ik_image *pcx;	
 	int x, y, n;
-
+#ifdef PANDORA
+	font_4x8 = ik_load_font("graphics/fnt3.pcx", 6, 8);
+	font_6x8 = ik_load_font("fnt7x8.pcx", 7, 8);
+#else
 	font_4x8 = ik_load_font("graphics/fnt2.pcx", 4, 8);
 	font_6x8 = ik_load_font("graphics/fnt3.pcx", 6, 8);
-
+#endif
 	spr_IFborder = load_sprites("graphics/ifborder.spr");
 	spr_IFbutton = load_sprites("graphics/ifbutton.spr");
 	spr_IFslider = load_sprites("graphics/ifslider.spr");
