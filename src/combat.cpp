@@ -82,11 +82,6 @@ int32 calc_leadangle(int32 tx, int32 ty, int32 vtx, int32 vty,
 // ----------------
 // GLOBAL FUNCTIONS
 // ----------------
-#ifdef PANDORA
-#define DECAL 32
-#else
-#define DECAL 0
-#endif
 int32 combat(int32 flt, int32 sim)
 {
 	int32 t, t0;
@@ -123,14 +118,14 @@ int32 combat(int32 flt, int32 sim)
 			Play_SoundFX(WAV_DESELECT);
 			if (simulated)
 			{
-				if (!interface_popup(font_6x8, 240-DECAL, 200, 160+2*DECAL, 72, COMBAT_INTERFACE_COLOR, 0, 
+				if (!interface_popup(font_6x8, 240, 200, 160, 72, COMBAT_INTERFACE_COLOR, 0, 
 						textstring[STR_QUIT_TITLE], textstring[STR_QUIT_SIMULATION], 
 						textstring[STR_YES], textstring[STR_NO]))
 				{	must_quit = 1; player.death = 666; }
 			}
 			else
 			{
-				if (!interface_popup(font_6x8, 240-DECAL, 200, 160+2*DECAL, 72, COMBAT_INTERFACE_COLOR, 0, 
+				if (!interface_popup(font_6x8, 240, 200, 160, 72, COMBAT_INTERFACE_COLOR, 0, 
 						textstring[STR_QUIT_TITLE], textstring[STR_QUIT_CONFIRM], 
 						textstring[STR_YES], textstring[STR_NO]))
 				{	must_quit = 1; player.death = 666; }
@@ -783,7 +778,7 @@ void klakar_pissoff()
 {
 	int32 mc, c;
 	int32 end = 0;
-	int32 bx = 216-DECAL, by = 152;
+	int32 bx = 216, by = 152;
 	int32 mx, my;
 	int32 r, t;
 	char str[256];
@@ -796,16 +791,16 @@ void klakar_pissoff()
 	prep_screen();
 	sprintf(str, textstring[STR_VIDCAST], races[r].name);
 	interface_drawborder(screen,
-											 bx, by, bx+208+DECAL, by+144,
+											 bx, by, bx+208, by+144,
 											 1, STARMAP_INTERFACE_COLOR, str);
 	ik_print(screen, font_6x8, bx+16, by+26, 3, textstring[STR_VIDCAST2]);
 	interface_textbox(screen, font_4x8,
-										bx+88-DECAL, by+40, 104+2*DECAL, 64, 0,
+										bx+88, by+40, 104, 64, 0,
 										textstring[STR_KLAK_NOPAY]);
 
-	ik_dsprite(screen, bx+16, by+40-DECAL, spr_SMraces->spr[race_klakar], 0);
-	ik_dsprite(screen, bx+16, by+40-DECAL, spr_IFborder->spr[18], 2+(STARMAP_INTERFACE_COLOR<<8));
-	interface_drawbutton(screen, bx+128-DECAL, by+116, 64, STARMAP_INTERFACE_COLOR, textstring[STR_OK]);
+	ik_dsprite(screen, bx+16, by+40, spr_SMraces->spr[race_klakar], 0);
+	ik_dsprite(screen, bx+16, by+40, spr_IFborder->spr[18], 2+(STARMAP_INTERFACE_COLOR<<8));
+	interface_drawbutton(screen, bx+128, by+116, 64, STARMAP_INTERFACE_COLOR, textstring[STR_OK]);
 
 	ik_blit();
 
@@ -887,33 +882,33 @@ void combat_sim_end()
 			prep_screen();
 			ik_copybox(bg, screen, 0, 0, 640, 480, 0,0);
 
-			interface_drawborder(screen, bx-DECAL, by, bx+240+DECAL, by+h, 1, STARMAP_INTERFACE_COLOR, textstring[STR_COMBAT_SIMEND]);
+			interface_drawborder(screen, bx, by, bx+240, by+h, 1, STARMAP_INTERFACE_COLOR, textstring[STR_COMBAT_SIMEND]);
 
-			ik_print(screen, font_6x8, bx+120-12*3-DECAL, by+24, 4, textstring[STR_COMBAT_SIMALLY]);
+			ik_print(screen, font_6x8, bx+120-12*3, by+24, 4, textstring[STR_COMBAT_SIMALLY]);
 			for (c = 0; c < player.num_ships; c++)
 			{
 				s = (cships[c].hits > 0);
-				interface_thinborder(screen, bx+16+c*72-DECAL, by+36, bx+80+c*72+DECAL, by+108, s*STARMAP_INTERFACE_COLOR+(1-s), 0);
-				ik_drsprite(screen, bx+48+c*72-DECAL, by+76, 0, 64, hulls[shiptypes[player.ships[c]].hull].sprite, 1+((s*15+(1-s)*26)<<8));
+				interface_thinborder(screen, bx+16+c*72, by+36, bx+80+c*72, by+108, s*STARMAP_INTERFACE_COLOR+(1-s), 0);
+				ik_drsprite(screen, bx+48+c*72, by+76, 0, 64, hulls[shiptypes[player.ships[c]].hull].sprite, 1+((s*15+(1-s)*26)<<8));
 				if (s)
-					ik_print(screen, font_6x8, bx+20+c*72-DECAL, by+40, 4, textstring[STR_COMBAT_SIMSURV]);
+					ik_print(screen, font_6x8, bx+20+c*72, by+40, 4, textstring[STR_COMBAT_SIMSURV]);
 				else
-					ik_print(screen, font_6x8, bx+20+c*72-DECAL, by+40, 1, textstring[STR_COMBAT_SIMDEST]);
+					ik_print(screen, font_6x8, bx+20+c*72, by+40, 1, textstring[STR_COMBAT_SIMDEST]);
 			}
 			for (; c < 3; c++)
 			{
-				interface_thinborder(screen, bx+16+c*72-DECAL, by+36, bx+80+c*72+DECAL, by+108, STARMAP_INTERFACE_COLOR, STARMAP_INTERFACE_COLOR*16+2);
+				interface_thinborder(screen, bx+16+c*72, by+36, bx+80+c*72, by+108, STARMAP_INTERFACE_COLOR, STARMAP_INTERFACE_COLOR*16+2);
 			}
 
-			ik_print(screen, font_6x8, bx+120-11*3-DECAL, by+120, 1, textstring[STR_COMBAT_SIMENMY]);
-			ik_print(screen, font_6x8, bx+16-DECAL, by+140, 0, textstring[STR_COMBAT_SIMSURV]);
-			ik_print(screen, font_6x8, bx+16-DECAL, by+162, 0, textstring[STR_COMBAT_SIMESCP]);
-			ik_print(screen, font_6x8, bx+16-DECAL, by+184, 0, textstring[STR_COMBAT_SIMDEST]);
+			ik_print(screen, font_6x8, bx+120-11*3, by+120, 1, textstring[STR_COMBAT_SIMENMY]);
+			ik_print(screen, font_6x8, bx+16, by+140, 0, textstring[STR_COMBAT_SIMSURV]);
+			ik_print(screen, font_6x8, bx+16, by+162, 0, textstring[STR_COMBAT_SIMESCP]);
+			ik_print(screen, font_6x8, bx+16, by+184, 0, textstring[STR_COMBAT_SIMDEST]);
 
 			// count enemies for each row
 			for (c = 0; c < 3; c++)
 			{
-				interface_thinborder(screen, bx+76-DECAL, by+134+c*22, bx+79+144+DECAL, by+153+c*22, STARMAP_INTERFACE_COLOR, 0);
+				interface_thinborder(screen, bx+76, by+134+c*22, bx+79+144, by+153+c*22, STARMAP_INTERFACE_COLOR, 0);
 				en[c] = 0;
 			}
 			for (c = 0; c < sm_fleets[0].num_ships; c++)
@@ -923,15 +918,15 @@ void combat_sim_end()
 				else if (cships[player.num_ships+c].type == -1) s = 1;
 
 				co = 15*(s==0)+58*(s==1)+26*(s==2);
-				ik_drsprite(screen, bx+83+en[s]*12-DECAL, by+143+s*22, 0, 16, hulls[shiptypes[sm_fleets[0].ships[c]].hull].sprite, 1+(co<<8));
+				ik_drsprite(screen, bx+83+en[s]*12, by+143+s*22, 0, 16, hulls[shiptypes[sm_fleets[0].ships[c]].hull].sprite, 1+(co<<8));
 
 				en[s]++;
 			}
 			for (c = 0; c < 3; c++)
 				if (en[c] == 0)
-					interface_thinborder(screen, bx+76-DECAL, by+134+c*22, bx+79+144+DECAL, by+153+c*22, STARMAP_INTERFACE_COLOR, STARMAP_INTERFACE_COLOR*16+2);
+					interface_thinborder(screen, bx+76, by+134+c*22, bx+79+144, by+153+c*22, STARMAP_INTERFACE_COLOR, STARMAP_INTERFACE_COLOR*16+2);
 
-			interface_drawbutton(screen, bx+240-64-DECAL, by+h-24, 48+DECAL/2, STARMAP_INTERFACE_COLOR, textstring[STR_OK]);
+			interface_drawbutton(screen, bx+240-64, by+h-24, 48/2, STARMAP_INTERFACE_COLOR, textstring[STR_OK]);
 
 			ik_blit();
 		}
@@ -1072,7 +1067,7 @@ void combat_end(int32 flt)
 	if (de > -1 && player.num_ships > 0 && player.ships[0] == 0)
 	{	// system was destroyed
 		sprintf(texty, textstring[STR_SYSTEM_DESTROYED], player.shipname, shipsystems[de].name);
-		interface_popup(font_6x8, 224-DECAL, 192, 192+DECAL*2, 96, STARMAP_INTERFACE_COLOR, 0, 
+		interface_popup(font_6x8, 224, 192, 192, 96, STARMAP_INTERFACE_COLOR, 0, 
 										textstring[STR_COMBAT_SYSDMG], texty, textstring[STR_OK]);
 	}
 
@@ -2314,42 +2309,42 @@ void combat_help_screen()
 
 	y+=6;
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "SYSTEM DAMAGE");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112+DECAL, 64, 0, "Damaged systems are shown in different colors. When a system is lost it ceases to function and must be repaired after the battle.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112, 64, 0, "Damaged systems are shown in different colors. When a system is lost it ceases to function and must be repaired after the battle.") - 8; 
 
 	x = 80; y = 308;
 	interface_thinborder(screen, x, y+4, x+120, y+60, COMBAT_INTERFACE_COLOR, 2+COMBAT_INTERFACE_COLOR*16);
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "MISC COMBAT ACTIONS");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112+DECAL, 64, 0, "By default, the only button available is Retreat. As you aqcuire special items or devices you may be able to use them during combat.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112, 64, 0, "By default, the only button available is Retreat. As you aqcuire special items or devices you may be able to use them during combat.") - 8; 
 
 	x = 288; y = 374;
 	interface_thinborder(screen, x, y+4, x+120, y+60, COMBAT_INTERFACE_COLOR, 2+COMBAT_INTERFACE_COLOR*16);
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "CURRENT TARGET");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112+DECAL, 64, 0, "This window shows the ship you've chosen to attack (or escort in case of friendly ships) along with its hull and shield status.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 112, 64, 0, "This window shows the ship you've chosen to attack (or escort in case of friendly ships) along with its hull and shield status.") - 8; 
 
 	x = 284; y = 52;
 	interface_thinborder(screen, x, y+4, x+136, y+84, COMBAT_INTERFACE_COLOR, 2+COMBAT_INTERFACE_COLOR*16);
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "SELECTING SHIPS");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 128+DECAL, 64, 0, "In addition to using the ship selection icons (see ALLIED SHIPS, top left) you can select any friendly ship by clicking it with the left mouse button. The currently selected ship is marked by a translucent green reticle.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 128, 64, 0, "In addition to using the ship selection icons (see ALLIED SHIPS, top left) you can select any friendly ship by clicking it with the left mouse button. The currently selected ship is marked by a translucent green reticle.") - 8; 
 
 	x = 428; y = 52;
 	interface_thinborder(screen, x, y+4, x+112, y+224, COMBAT_INTERFACE_COLOR, 2+COMBAT_INTERFACE_COLOR*16);
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "GIVING ORDERS");
 	y+=6;
 	ik_print(screen, font_6x8, x+4, y+=8, 1, "ATTACK ENEMY");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104+DECAL, 64, 0, "Left-click on any enemy spacecraft to order the selected ship to attack it. Hold the button and drag to add a waypoint, for example to attack from the side. The path of attack is shown in red.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104, 64, 0, "Left-click on any enemy spacecraft to order the selected ship to attack it. Hold the button and drag to add a waypoint, for example to attack from the side. The path of attack is shown in red.") - 8; 
 	y+=6;
 	ik_print(screen, font_6x8, x+4, y+=8, 3, "STAY IN FORMATION");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104+DECAL, 64, 0, "Right-click anywhere near your ship to order the selected ally to follow you, staying on that side of your ship. The course to its escort position is shown in yellow.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104, 64, 0, "Right-click anywhere near your ship to order the selected ally to follow you, staying on that side of your ship. The course to its escort position is shown in yellow.") - 8; 
 	y+=6;
 	ik_print(screen, font_6x8, x+4, y+=8, 4, "MOVE TO WAYPOINT");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104+DECAL, 64, 0, "Left-click at empty space to move the selected ship to that location. The course to the waypoint is shown in green.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104, 64, 0, "Left-click at empty space to move the selected ship to that location. The course to the waypoint is shown in green.") - 8; 
 
 	x = 428; y = 284;
 	interface_thinborder(screen, x, y+4, x+112, y+108, COMBAT_INTERFACE_COLOR, 2+COMBAT_INTERFACE_COLOR*16);
 	ik_print(screen, font_6x8, x+4, y+=8, COMBAT_INTERFACE_COLOR, "PAUSE / SPEED UP");
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104+DECAL, 64, 0, "Click these symbols to change the speed of the game. You can give orders to your ships even when paused. Click on the single arrow head to return to normal speed.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104, 64, 0, "Click these symbols to change the speed of the game. You can give orders to your ships even when paused. Click on the single arrow head to return to normal speed.") - 8; 
 	y+=6;
-	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104+DECAL, 64, 0, "You can also press the space bar to pause and unpause.") - 8; 
+	y+=8*interface_textbox(screen, font_4x8, x+4, y+=8, 104, 64, 0, "You can also press the space bar to pause and unpause.") - 8; 
 #endif
 
 	ik_blit();

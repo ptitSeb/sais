@@ -244,9 +244,11 @@ int modconfig_main()
 		{
 			prep_screen();
 			ik_copybox(backy, screen, 0, 0, 639, 479, 0, 0);
-#ifdef PANDORA
+#ifdef BIGGER
 #define WIDE 280
 #define DECAL (WIDE-256)/2
+			t_ik_font* font_backup = font_6x8;
+			font_6x8 = font_7x8;
 #else
 #define WIDE 256
 #define DECAL 0
@@ -298,7 +300,9 @@ int modconfig_main()
 
 				default: ;
 			}
-
+#ifdef BIGGER
+			font_6x8 = font_backup;
+#endif
 			update_palette();
 			ik_blit();	
 		}

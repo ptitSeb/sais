@@ -45,6 +45,9 @@ extern t_ik_spritepak *spr_IFdifenemy;
 
 extern t_ik_font	    *font_4x8;
 extern t_ik_font	    *font_6x8;
+#ifdef BIGGER
+extern t_ik_font	    *font_7x8;
+#endif
 
 // ----------------
 //    PROTOTYPES

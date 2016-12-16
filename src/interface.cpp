@@ -35,6 +35,9 @@ t_ik_spritepak *spr_IFdifenemy;
 
 t_ik_font			 *font_4x8;
 t_ik_font			 *font_6x8;
+#ifdef BIGGER
+t_ik_font			 *font_7x8;
+#endif
 
 int tut_seen[tut_max];
 
@@ -328,8 +331,8 @@ int32 interface_popup(t_ik_font *fnt,
 
 	if (bl)
 	{
-#ifdef PANDORA
-		bl = bl * 7 + 16;
+#ifdef BIGGER
+		bl = bl * fnt->w + 16;
 #else
 		bl = bl * 6 + 16;
 #endif
@@ -450,12 +453,10 @@ void interface_initsprites()
 {
 	t_ik_image *pcx;	
 	int x, y, n;
-#ifdef PANDORA
-	font_4x8 = ik_load_font("graphics/fnt3.pcx", 6, 8);
-	font_6x8 = ik_load_font("fnt7x8.pcx", 7, 8);
-#else
 	font_4x8 = ik_load_font("graphics/fnt2.pcx", 4, 8);
 	font_6x8 = ik_load_font("graphics/fnt3.pcx", 6, 8);
+#ifdef BIGGER
+	font_7x8 = ik_load_font("fnt7x8.pcx", 7, 8);
 #endif
 	spr_IFborder = load_sprites("graphics/ifborder.spr");
 	spr_IFbutton = load_sprites("graphics/ifbutton.spr");

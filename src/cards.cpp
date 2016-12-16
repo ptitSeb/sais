@@ -168,11 +168,6 @@ void cards_deinit()
 	num_ecards = 0;
 	free(ecards);
 }
-#ifdef PANDORA
-#define DECAL 32
-#else
-#define DECAL 0
-#endif
 void card_display(int n)
 {
 	int32 mc, c;
@@ -180,10 +175,10 @@ void card_display(int n)
 
 	prep_screen();
 	interface_drawborder(screen,
-											 224-DECAL, 112, 416+DECAL, 368,
+											 224, 112, 416, 368,
 											 1, STARMAP_INTERFACE_COLOR, ecards[n].name);
 	interface_textbox(screen, font_6x8,
-										240-DECAL, 136, 160+2*DECAL, 224, 0,
+										240, 136, 160+2, 224, 0,
 										ecards[n].text);
 	ik_blit();
 

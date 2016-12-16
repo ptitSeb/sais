@@ -8,6 +8,7 @@ option(DEMO "Set to ON if targeting DEMO Build" ${DEMO})
 
 if(PANDORA)
 	add_definitions(-DPANDORA)
+	add_definitions(-DBIGGER)
 endif()
 
 if(DEMO)
