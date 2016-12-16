@@ -51,6 +51,12 @@ extern unsigned char *gfx_addbuffer;
 extern int32 sin1k[1024];
 extern int32 cos1k[1024];
 
+#ifdef BIGGER
+#define MAGW 280
+#else
+#define MAGW 192
+#endif
+
 // load, generate or delete images
 t_ik_image *new_image(int32 w, int32 h);
 void del_image(t_ik_image *img);

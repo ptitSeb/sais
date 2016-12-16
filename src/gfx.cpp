@@ -727,7 +727,7 @@ void gfx_magnify()
 	//unsigned char *m;
 
 //	mag = get_sprite(screen, ik_mouse_x-64, ik_mouse_y-64, 128, 128);
-	mag = get_sprite(screen, ik_mouse_x-96, ik_mouse_y-48, 192, 96);
+	mag = get_sprite(screen, ik_mouse_x-MAGW/2, ik_mouse_y-48, MAGW, 96);
 	p = mag->data;
 	y = mag->h * mag->w;
 	while (y--)
@@ -763,8 +763,8 @@ void gfx_magnify()
 
 	ik_drsprite(screen, ik_mouse_x+1, ik_mouse_y+1, 0, 256, mag, 0);
 	*/
-	ik_drsprite(screen, ik_mouse_x+1, ik_mouse_y+1, 0, 384, mag, 0);
-	interface_thinborder(screen, ik_mouse_x-192, ik_mouse_y-96, ik_mouse_x+192, ik_mouse_y+96, 11, -1);
+	ik_drsprite(screen, ik_mouse_x+1, ik_mouse_y+1, 0, MAGW*2, mag, 0);
+	interface_thinborder(screen, ik_mouse_x-MAGW, ik_mouse_y-96, ik_mouse_x+MAGW, ik_mouse_y+96, 11, -1);
 	/*
 	ik_drawline(screen, ik_mouse_x-192, ik_mouse_y-96, ik_mouse_x+191, ik_mouse_y-96, 178, 0, 255, 0);
 	ik_drawline(screen, ik_mouse_x-192, ik_mouse_y+95, ik_mouse_x+191, ik_mouse_y+95, 178, 0, 255, 0);

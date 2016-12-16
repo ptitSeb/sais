@@ -71,7 +71,7 @@ void ik_blit()
 	else if (settings.opt_mousemode & 4)
 	{
 //		cs = get_sprite(screen, ik_mouse_x-128, ik_mouse_y-128, 256, 256);
-		cs = get_sprite(screen, ik_mouse_x-192, ik_mouse_y-96, 384, 192);
+		cs = get_sprite(screen, ik_mouse_x-MAGW, ik_mouse_y-96, MAGW*2, 192);
 		gfx_magnify();
 		if (!(settings.opt_mousemode & 1))
 		{
@@ -96,7 +96,7 @@ void ik_blit()
 	{
 		prep_screen();
 //		ik_dsprite(screen, ik_mouse_x-128, ik_mouse_y-128, cs, 4);
-		ik_dsprite(screen, ik_mouse_x-192, ik_mouse_y-96, cs, 4);
+		ik_dsprite(screen, ik_mouse_x-MAGW, ik_mouse_y-96, cs, 4);
 		free_screen();
 		free_sprite(cs);
 	}
