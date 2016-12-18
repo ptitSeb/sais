@@ -6,6 +6,6 @@ This version is based on the official sources released by digital-eel, but sligh
 
 You'l need cmake (v2.8 minimum), SDL and SDL_mixer.
 
-It has been tested on OpenPandora. The Mods have not been tested yet.
+It has been tested on OpenPandora. The Mods have been quickly tested and seems to work.
 
-To get data, go to official site of sais http://digital-eel.com/sais/ and download the full release, it's free (grab the osx version and extract the dmg data using 7z on linux).
+To get data, go to official site of sais http://digital-eel.com/sais/ and download the full release, it's free (grab the osx version and extract the dmg data using 7z on linux, or install the Windows on Wine).
