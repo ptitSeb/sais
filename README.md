@@ -1,5 +1,8 @@
 # Strange Adventure in Infinite Space
 
+
+![sais build status](https://api.travis-ci.org/ptitSeb/sais.png "sais build status")
+
 Strange Adventure in Infinite Space for Linux and Pandora.
 
 This version is based on the official sources released by digital-eel, but slightly changed to build under Linux. The Windows version should still compile
