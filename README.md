@@ -17,5 +17,6 @@ To build, simply create a build folder, then use cmake and make to build:
 `mkdir build && cd build && cmake .. -DDATAS=on && make`
 then launch the game with `./strange`
 
+If youenjoyed this game, don't forget to go visit Digital Eel homepage: http://www.digital-eel.com/
 
 NOTE: The gpl licence only apply to the source code. It doesn't apply to datas (that are free but not gpl'd).
