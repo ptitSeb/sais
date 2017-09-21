@@ -6,6 +6,8 @@ option(PANDORA "Set to ON if targeting an OpenPandora device" ${PANDORA})
 
 option(DEMO "Set to ON if targeting DEMO Build" ${DEMO})
 
+option(DATAS "Set to ON to copy Data in build folder (for direct play)" ${DATAS})
+
 if(PANDORA)
 	add_definitions(-DPANDORA)
 	add_definitions(-DBIGGER)
@@ -46,6 +48,7 @@ src/startgame.cpp
 src/textstr.cpp
 src/sdl_gfx.cpp
 src/sdl_sound.cpp
+src/cifm.cpp
 )
 
 find_package(SDL REQUIRED)
@@ -58,3 +61,11 @@ add_definitions("-Wno-write-strings")
 add_executable(strange ${GAME_SOURCE_FILES})
 include_directories(strange "src" ${SDL_INCLUDE_DIR} ${SDL_MIXER_INCLUDE_DIR})
 target_link_libraries(strange ${THE_LIBS})
+
+if(DATAS)
+	if(DEMO)
+	add_custom_command(TARGET strange POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_SOURCE_DIR}/demo $<TARGET_FILE_DIR:strange>)
+	endif()
+endif()
