@@ -11,7 +11,11 @@ You'l need cmake (v2.8 minimum), SDL and SDL_mixer.
 
 It has been tested on OpenPandora. The Mods have been quickly tested and seems to work.
 
-The demo data are include for convenience, in the folder demo
+The demo and full data are include for convenience, in the folder demo
+
+To build, simply create a build folder, then use cmake and make to build:
+`mkdir build && cd build && cmake .. -DDATAS=on && make`
+then launch the game with `./strange`
 
 
 NOTE: The gpl licence only apply to the source code. It doesn't apply to datas (that are free but not gpl'd).
