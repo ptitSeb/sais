@@ -67,5 +67,15 @@ if(DATAS)
 	add_custom_command(TARGET strange POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
 		${CMAKE_SOURCE_DIR}/demo $<TARGET_FILE_DIR:strange>)
+else()
+	add_custom_command(TARGET strange POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_SOURCE_DIR}/full $<TARGET_FILE_DIR:strange>)
 	endif()
+	if(PANDORA)
+		add_custom_command(TARGET strange POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_file
+			${CMAKE_SOURCE_DIR}/fnt7x8.pcx $<TARGET_FILE_DIR:strange>)
+	endif()
+
 endif()
