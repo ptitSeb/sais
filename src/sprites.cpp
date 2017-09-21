@@ -21,6 +21,11 @@
 #include "gfx.h"
 #include "is_fileio.h"
 #include "snd.h"
+#ifdef __linux__
+#include "cifm.h"
+#define fopen(a, b) ci_fopen(a, b)
+#endif
+
 
 //		FILE *loggy;
 

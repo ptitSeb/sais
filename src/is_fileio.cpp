@@ -12,6 +12,10 @@
 #include "is_fileio.h"
 #include "combat.h"
 #include "starmap.h"
+#ifdef __linux__
+#include "cifm.h"
+#define fopen(a, b) ci_fopen(a, b)
+#endif
 
 FILE *logfile;
 int last_logdate;
