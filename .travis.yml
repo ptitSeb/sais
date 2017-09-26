@@ -1,14 +1,15 @@
 language: cpp
 sudo: true
 dist: trusty
+addons:
+  apt:
+    packages:
+    - libsdl-mixer1.2-dev
 
 compiler:
     - g++
 
 #Build steps
-before_install:
-    - sudo apt-get install libsdl-mixer1.2-dev -y
-
 script:
     - mkdir build
     - cd build
