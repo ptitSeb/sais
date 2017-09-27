@@ -5,6 +5,8 @@
 
 Strange Adventure in Infinite Space for Linux and Pandora.
 
+![sreenshot on Pandora](screenshot.png "screenshot on Pandora")
+
 This version is based on the official sources released by digital-eel, but slightly changed to build under Linux. The Windows version should still compile
 
 You'l need cmake (v2.8 minimum), SDL and SDL_mixer.
